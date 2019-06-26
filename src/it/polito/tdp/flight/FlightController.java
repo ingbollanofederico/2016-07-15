@@ -3,6 +3,7 @@ package it.polito.tdp.flight;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.polito.tdp.flight.model.Airport;
 import it.polito.tdp.flight.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +31,26 @@ public class FlightController {
 
 	@FXML
 	void doCreaGrafo(ActionEvent event) {
+		
+		try {
+			Integer km = Integer.parseInt(this.txtDistanzaInput.getText());
+			this.model.creaGrafo(km);
+			
+			boolean connesso = this.model.possibileRaggiungere();
+			if(connesso) {
+			this.txtResult.appendText("Possibile raggiungere ogni aeroporto\n");
+			}else {
+				this.txtResult.appendText("NON Possibile raggiungere ogni aeroporto\n");
+			}
+			
+			Airport lontanoFiumicino = this.model.lontanoDa();
+			this.txtResult.appendText("Il più lontano da fiumicino: "+lontanoFiumicino);
+			
+			
+		}catch(NumberFormatException e) {
+			this.txtResult.clear();
+			this.txtResult.appendText("Devi inserire una distanza in km!\n");
+		}
 		
 	}
 

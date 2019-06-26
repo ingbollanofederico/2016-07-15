@@ -7,7 +7,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class DBConnect {
 	
-	private final static String jdbcURL = "jdbc:mysql://localhost/openflights?user=root&password=root";
+	private final static String jdbcURL = "jdbc:mysql://localhost/openflights?serverTimezone=Europe/Rome";
 
 	private static HikariDataSource ds = null;
 
@@ -17,7 +17,7 @@ public class DBConnect {
 			HikariConfig config = new HikariConfig();
 			config.setJdbcUrl(jdbcURL);
 			config.setUsername("root");
-			config.setPassword("root");
+			config.setPassword("");
 			
 			//configurazione mysql
 			config.addDataSourceProperty("cachePrepStmts", "true");
